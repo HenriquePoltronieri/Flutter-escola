@@ -5,25 +5,21 @@ import 'pages/tela_home.dart';
 void main() {
   runApp(
     DevicePreview(
+      enabled: true,
       builder: (context) => MeuApp(),
     ),
   );
 }
 
 class MeuApp extends StatelessWidget {
-  const MeuApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Meu App de Ícones',
+      title: 'Meu App',
       theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.blue,
-          secondary: Colors.amber,
-        ),
       ),
       home: const TelaHome(),
     );

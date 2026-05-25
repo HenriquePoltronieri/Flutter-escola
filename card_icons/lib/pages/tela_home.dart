@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/card_icone.dart';
-import 'tela_perfil.dart';
-import 'tela_favoritos.dart';
 import 'tela_configuracoes.dart';
-import 'tela_notificacoes.dart';
+import 'tela_favoritos.dart';
+import 'tela_perfil.dart';
 
 class TelaHome extends StatefulWidget {
   const TelaHome({super.key});
@@ -13,94 +12,124 @@ class TelaHome extends StatefulWidget {
 }
 
 class _TelaHomeState extends State<TelaHome> {
-  String mensagem = 'Clique em um botão para ver a mensagem';
-
-  void mudarMensagem(String novaMensagem) {
-    setState(() {
-      mensagem = novaMensagem;
-    });
-  }
+  String mensagem = 'Escolha uma opção para começar';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Meu App de Ícones'),
-        centerTitle: true,
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Bem-vindo ao aplicativo!',
+              'Painel Principal',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 26,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Escolha uma das opções abaixo:',
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
+            const Text('Escolha uma opção abaixo:'),
             const SizedBox(height: 16),
             Container(
-              padding: const EdgeInsets.all(12),
-              margin: const EdgeInsets.only(bottom: 16),
-              decoration: BoxDecoration(
-                color: Colors.blue.shade50,
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Text(
-                mensagem,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              color: Colors.purple.shade50,
+              child: Text(mensagem),
             ),
+            const SizedBox(height: 16),
             CardIcone(
               icone: Icons.person,
               titulo: 'Perfil',
-              descricao: 'Veja as informações do usuário.',
-              textoBotao: 'Ver perfil',
-              cor: Colors.blue,
+              descricao: 'Ver informações do usuário.',
+              textoBotao: 'Abrir Perfil',
+              cor: Colors.purple,
               onPressed: () {
-                mudarMensagem('Você clicou em Perfil');
-              },
-            ),
-            CardIcone(
-              icone: Icons.settings,
-              titulo: 'Configurações',
-              descricao: 'Altere as preferências do aplicativo.',
-              textoBotao: 'Configurar',
-              cor: Colors.green,
-              onPressed: () {
-                mudarMensagem('Você clicou em Configurações');
+                setState(() {
+                  mensagem = 'Você abriu a página Perfil';
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const TelaPerfil()),
+                );
               },
             ),
             CardIcone(
               icone: Icons.favorite,
               titulo: 'Favoritos',
-              descricao: 'Veja seus itens favoritos.',
-              textoBotao: 'Abrir',
-              cor: Colors.red,
+              descricao: 'Ver seus conteúdos favoritos.',
+              textoBotao: 'Ver Favoritos',
+              cor: Colors.pink,
               onPressed: () {
-                mudarMensagem('Você clicou em Favoritos');
+                setState(() {
+                  mensagem = 'Você abriu Favoritos';
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TelaFavoritos()),
+                );
               },
             ),
             CardIcone(
-              icone: Icons.fit_screen,
-              titulo: 'Perfil',
-              descricao: 'Veja as informações do usuário.',
-              textoBotao: 'Ver perfil',
-              cor: Colors.blue,
+              icone: Icons.settings,
+              titulo: 'Configurações',
+              descricao: 'Configurar o aplicativo.',
+              textoBotao: 'Configurar',
+              cor: Colors.teal,
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => TelaPerfil()));
+                setState(() {
+                  mensagem = 'Você abriu Configurações';
+                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const TelaConfiguracoes()),
+                );
+              },
+            ),
+            CardIcone(
+              icone: Icons.notifications,
+              titulo: 'Notificações',
+              descricao: 'Ver avisos e novidades.',
+              textoBotao: 'Abrir Modal',
+              cor: Colors.orange,
+              onPressed: () {
+                setState(() {
+                  mensagem = 'Você abriu o modal';
+                });
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      padding: const EdgeInsets.all(20),
+                      height: 220,
+                      child: Column(
+                        children: [
+                          const Icon(Icons.notifications,
+                              size: 50, color: Colors.orange),
+                          const SizedBox(height: 12),
+                          const Text(
+                            'Modal de Notificações',
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          ),
+                          const SizedBox(height: 8),
+                          const Text('Não tem nenhuma notificação pendente.'),
+                          const Spacer(),
+                          ElevatedButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: const Text('Fechar'),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
               },
             ),
           ],
@@ -108,7 +137,9 @@ class _TelaHomeState extends State<TelaHome> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          mudarMensagem('Você clicou no botão flutuante');
+          setState(() {
+            mensagem = 'Você clicou no botão flutuante';
+          });
         },
         child: const Icon(Icons.add),
       ),
