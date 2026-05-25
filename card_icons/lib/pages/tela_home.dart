@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/card_icone.dart';
 import 'tela_perfil.dart';
+import 'tela_favoritos.dart';
+import 'tela_configuracoes.dart';
+import 'tela_notificacoes.dart';
 
 class TelaHome extends StatefulWidget {
   const TelaHome({super.key});
