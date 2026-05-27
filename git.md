@@ -370,3 +370,18 @@ git clone https://github.com/seu-usuario/nome-do-projeto.git
 cd nome-do-projeto
 code .
 ```
+
+## Configurar nome e e-mail no Git
+
+Esse passo identifica quem está fazendo os commits.
+
+```bash
+git config --global user.name "HenriquePoltronieri"
+git config --global user.email "henrique.poltronieri2008@gmail.com"
+```
+
+Para conferir se deu certo:
+
+```bash
+git config --global --list
+```
