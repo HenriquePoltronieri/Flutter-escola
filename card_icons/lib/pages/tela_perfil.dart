@@ -6,64 +6,56 @@ class TelaPerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('Perfil'),
+      ),
       body: Padding(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            const CircleAvatar(
-              radius: 60,
-              backgroundColor: Colors.deepPurple,
-              child: Icon(
-                Icons.person,
-                size: 70,
-                color: Colors.white,
-              ),
+            const Icon(
+              Icons.person,
+              size: 90,
+              color: Colors.deepPurple,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             const Text(
-              'Igor Lucas',
+              'Página de Perfil',
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 10),
             const Text(
-              'Professor de Desenvolvimento',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.grey,
-              ),
+              'Aqui ficam informações importantes do usuário.',
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
-            Card(
-              child: ListTile(
-                leading: const Icon(Icons.email),
-                title: const Text('Email'),
-                subtitle: const Text('igor@email.com'),
-              ),
+            const SizedBox(height: 20),
+            const ListTile(
+              leading: Icon(Icons.school),
+              title: Text('Estudos'),
+              subtitle: Text('Aprendendo Flutter e programação'),
             ),
-            Card(
-              child: ListTile(
-                leading: const Icon(Icons.phone),
-                title: const Text('Telefone'),
-                subtitle: const Text('(31) 99999-9999'),
-              ),
+            Divider(),
+            const ListTile(
+              leading: Icon(Icons.games),
+              title: Text('Jogos'),
+              subtitle: Text('Jogos favoritos e plataformas'),
             ),
-            Card(
-              child: ListTile(
-                leading: const Icon(Icons.location_on),
-                title: const Text('Cidade'),
-                subtitle: const Text('Belo Horizonte - MG'),
-              ),
+            Divider(),
+            const ListTile(
+              leading: Icon(Icons.music_note),
+              title: Text('Músicas'),
+              subtitle: Text('Playlist favorita para estudar '),
             ),
-            const SizedBox(height: 30),
+            const Spacer(),
             ElevatedButton.icon(
               onPressed: () {
-                print('Editar perfil');
+                Navigator.pop(context);
               },
-              icon: const Icon(Icons.edit),
-              label: const Text('Editar Perfil'),
+              icon: const Icon(Icons.arrow_back),
+              label: const Text('Voltar'),
             ),
           ],
         ),
