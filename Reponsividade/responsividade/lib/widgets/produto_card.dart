@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Card individual que exibe as informações de um produto na grade
 class ProdutoCard extends StatelessWidget {
   final IconData icone;
   final String nome;
@@ -29,6 +30,7 @@ class ProdutoCard extends StatelessWidget {
               color: Colors.indigo,
             ),
             const SizedBox(height: 8),
+            // FittedBox evita overflow do nome do produto em cards menores
             FittedBox(
               child: Text(
                 nome,
@@ -44,6 +46,7 @@ class ProdutoCard extends StatelessWidget {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
+            // Spacer empurra o preço e botão para o rodapé do card
             const Spacer(),
             Text(
               preco,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Modelo que representa um produto exibido na loja
 class Produto {
   final IconData icone;
   final String nome;

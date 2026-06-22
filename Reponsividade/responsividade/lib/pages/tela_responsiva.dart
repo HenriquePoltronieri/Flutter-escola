@@ -9,8 +9,10 @@ class TelaResponsiva extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Captura a largura atual da tela para exibir no texto informativo
     final larguraTela = MediaQuery.of(context).size.width;
 
+    // Lista de produtos exibidos na grade
     final produtos = [
       Produto(Icons.laptop_mac, 'Notebook Pro',
           'Ideal para estudos e trabalho.', 'R\$ 3.499'),
@@ -31,20 +33,24 @@ class TelaResponsiva extends StatelessWidget {
         title: const Text('Aula de Responsividade'),
         centerTitle: true,
       ),
+      // LayoutBuilder fornece as constraints reais do espaço disponível
       body: LayoutBuilder(
         builder: (context, constraints) {
           final largura = constraints.maxWidth;
 
+          // Breakpoints que definem o tipo de dispositivo
           final celular = largura < 600;
           final tablet = largura >= 600 && largura < 900;
           final desktop = largura >= 900;
 
+          // Número de colunas da grade de produtos varia conforme o dispositivo
           final colunas = celular
               ? 1
               : tablet
                   ? 2
                   : 3;
 
+          // Altura dos cards ajustada para cada tamanho de tela
           final alturaCard = celular
               ? 230.0
               : tablet
@@ -56,6 +62,7 @@ class TelaResponsiva extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // Indica visualmente qual modo de layout está ativo
                 Text(
                   celular
                       ? 'Modo celular'
@@ -69,6 +76,7 @@ class TelaResponsiva extends StatelessWidget {
                 ),
                 Text('Largura atual: ${larguraTela.toStringAsFixed(0)} px'),
                 const SizedBox(height: 20),
+                // Banner com proporção diferente entre celular e telas maiores
                 AspectRatio(
                   aspectRatio: celular ? 16 / 9 : 16 / 5,
                   child: Container(
@@ -99,6 +107,7 @@ class TelaResponsiva extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
+                // Wrap organiza os chips automaticamente em múltiplas linhas
                 const Wrap(
                   spacing: 10,
                   runSpacing: 10,
@@ -112,6 +121,7 @@ class TelaResponsiva extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 25),
+                // No desktop, produtos e resumo ficam lado a lado; nos demais, empilhados
                 if (desktop)
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

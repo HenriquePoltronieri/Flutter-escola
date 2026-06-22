@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'pages/tela_responsiva.dart';
 
+// Envolve o app com DevicePreview para simular diferentes tamanhos de tela
 void main() {
   runApp(
     DevicePreview(
@@ -12,6 +13,7 @@ void main() {
   );
 }
 
+// Widget raiz do aplicativo, configurado para funcionar com o DevicePreview
 class AppResponsivo extends StatelessWidget {
   const AppResponsivo({super.key});
 
@@ -19,6 +21,7 @@ class AppResponsivo extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Responsividade',
+      // Aplica o locale e o builder do DevicePreview para simular dispositivos
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
       theme: ThemeData(

@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import '../models/produto.dart';
 import 'produto_card.dart';
 
+// Seção que exibe os produtos em uma grade com número de colunas responsivo
 class AreaProdutos extends StatelessWidget {
   final List<Produto> produtos;
-  final int colunas;
-  final double alturaCard;
+  final int colunas;       // quantidade de colunas da grade
+  final double alturaCard; // altura fixa de cada card
 
   const AreaProdutos({
     super.key,
@@ -25,6 +26,8 @@ class AreaProdutos extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         const SizedBox(height: 12),
+        // shrinkWrap e NeverScrollableScrollPhysics permitem usar o GridView
+        // dentro de um SingleChildScrollView sem conflito de scroll
         GridView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),

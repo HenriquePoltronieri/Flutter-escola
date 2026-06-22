@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// Widget que exibe o resumo dos itens selecionados e o total do pedido
 class ResumoPedido extends StatelessWidget {
   const ResumoPedido({super.key});
 
@@ -20,6 +21,7 @@ class ResumoPedido extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
+            // Cada ListTile representa um item adicionado ao carrinho
             const ListTile(
               leading: Icon(Icons.shopping_cart),
               title: Text('Notebook Pro'),
